@@ -1,0 +1,30 @@
+# Full 27 trajectory features, segment length 16, standard normalization.
+# Always extracts all 27D features
+
+name: "seg16_std_nolog"
+description: "Segment length 16, standard normalization, no log transform"
+version: "2.0"
+
+segment:
+  length: 16
+  stride_train: 4
+  stride_test: 1
+
+normalization:
+  method: "standard"  # StandardScaler
+  fit_on: "training"  # Fit on training, transform on test
+
+extractor:
+  apply_log: false
+  # Always extracts all 27D features:
+  # Basic (4): cx, cy, w, h
+  # Velocity (3): vx, vy, speed
+  # Acceleration (3): ax, ay, acc
+  # Geometry (2): area, ratio
+  # Normalized speed (3): h_norm_speed, w_norm_speed, area_norm_speed
+  # Normalized acc (3): h_norm_acc, w_norm_acc, area_norm_acc
+  # Direction (2): sin_theta, cos_theta
+  # High-order kinematics (2): jerk, curvature
+  # Geometric dynamics (2): expansion_rate, ar_velocity
+  # Pseudo-physics (2): kinetic_energy, path_efficiency
+  # Confidence (1): conf

@@ -1,0 +1,20 @@
+# Long Context Feature Configuration: Segment 24, Standard Normalization, Log Transform
+# Longer temporal context for capturing long-term patterns
+# Always extracts all 27D features
+
+name: "seg24_std_nolog"
+description: "Segment length 24, standard normalization, no log transform"
+version: "2.0"
+
+segment:
+  length: 24
+  stride_train: 4
+  stride_test: 1
+
+normalization:
+  method: "standard"
+  fit_on: "training"
+
+extractor:
+  apply_log: false
+  # Always extracts all 27D features

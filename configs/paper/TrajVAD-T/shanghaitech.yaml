@@ -1,0 +1,61 @@
+name: TrajVAD-T_shanghaitech
+description: TrajVAD-T full 27-feature configuration for shanghaitech.
+version: '1.0'
+model:
+  model_type: TrajVAD-T
+  emb_dim: 3
+  num_classes: 80
+  hidden_channels: 96
+  K: 6
+  pose_dim: 0
+  lambda_pose: 1.0
+  use_emb_in_input: true
+  prior_mean: 3.0
+  wavenet_dilation: true
+  max_dilation: 12
+  cont_dim: 27
+training:
+  batch_size: 256
+  num_epochs: 10
+  optimizer: rmsprop
+  lr: 0.0005
+  weight_decay: 0.0
+  momentum: 0.9
+  grad_clip: 3.0
+data:
+  feature_selection:
+  - cx
+  - cy
+  - w
+  - h
+  - vx
+  - vy
+  - speed
+  - ax
+  - ay
+  - acc
+  - area
+  - ratio
+  - h_norm_speed
+  - w_norm_speed
+  - area_norm_speed
+  - h_norm_acc
+  - w_norm_acc
+  - area_norm_acc
+  - sin_theta
+  - cos_theta
+  - jerk
+  - curvature
+  - expansion_rate
+  - ar_velocity
+  - kinetic_energy
+  - path_efficiency
+  - conf
+  dataset: shanghaitech
+  feature_variant: seg16_std_nolog
+  mode: kf
+  seg_len: 16
+system:
+  seed: 42
+  device: cuda
+  num_workers: 4
